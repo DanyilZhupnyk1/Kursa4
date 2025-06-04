@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="container">
                 <div className="row">
                     <div className="col-md-6">
-                        <p className="m-0">&copy; 2023 Auditorium Reservation</p>
+                        <p className="m-0">&copy; 2025 Auditorium Reservation</p>
                     </div>
                     <div className="col-md-6 text-md-end">
                         <ul className="list-inline mb-0">

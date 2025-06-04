@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useRef, useCallback } from 'react';
-import { Table, Button, ButtonGroup } from 'react-bootstrap';
+import { Table, Button, ButtonGroup, Form } from 'react-bootstrap';
 import { fetchUserOrders } from '../services/user_api';
 import { deleteOrder } from '../services/order_api';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -72,7 +72,7 @@ const UserBookings = () => {
         }
     };
 
-
+    console.log(bookings);
     return (
         <div className='my-4'>
             <h2>User bookings</h2>
@@ -85,6 +85,8 @@ const UserBookings = () => {
                                 <th>Reservation Date</th>
                                 <th>Start time</th>
                                 <th>End time</th>
+                                <th>Passwords</th>
+                                <th style={{ minWidth: '150px' }}>Event Type</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -95,9 +97,17 @@ const UserBookings = () => {
                                     <td>{ booking.reservation_date }</td>
                                     <td>{ booking.start_datetime }</td>
                                     <td>{ booking.end_datetime }</td>
+                                    <td>{ booking.passwords && Array.isArray(booking.passwords) ? booking.passwords.join(', ') : '' }</td>
+                                    <td style={{ minWidth: '150px' }}>
+                                        <Form.Select aria-label="Select event type">
+                                            <option value="conference">Conference</option>
+                                            <option value="lecture">Lecture</option>
+                                            <option value="laboratory">Laboratory</option>
+                                            <option value="meeting">Meeting</option>
+                                        </Form.Select>
+                                    </td>
                                     <td>
                                         <ButtonGroup>
-
                                             <Button
                                                 variant='warning'
                                                 onClick={ () => handleGoToBooking(booking.auditorium, booking.id) }
